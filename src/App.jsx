@@ -5,18 +5,22 @@ import Cart from "./features/cart/Cart";
 import CreateOrder from "./features/order/CreateOrder";
 import Order from "./features/order/Order";
 import AppLayout from "./ui/AppLayout";
+import Error from "./ui/Error";
 
 //I use createBrowserRouter in order to enable data fetching or data loading or to sumbit data using forms with React Router
 const router = createBrowserRouter([
   {
     element: <AppLayout /> /* AppLayout is a Layout Route */,
+    errorElement: <Error />,
     children: [
       { path: "/", element: <Home /> },
       {
         path: "/menu",
         element: <Menu />,
-        loader: menuLoader,
-      } /*provide the menu data using the menuLoader to the menu page */,
+        loader:
+          menuLoader /*provide the menu data using the menuLoader to the menu page */,
+        errorElement: <Error />,
+      },
       { path: "/cart", element: <Cart /> },
       { path: "/order/new", element: <CreateOrder /> },
       { path: "/order/:orderId", element: <Order /> },
